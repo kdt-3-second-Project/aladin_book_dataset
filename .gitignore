@@ -1,6 +1,4 @@
 /processed/**/*.pkl
-/processed/**/*.csv
-/processed/**/*.pkl
 /samples/**/*.*
 /learning_material
 
