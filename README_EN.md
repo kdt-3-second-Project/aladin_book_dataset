@@ -1,23 +1,23 @@
-**KOR** · [ENG](./README_EN.md)
+[KOR](./README.md) · **ENG**
 
 # 알라딘 베스트 셀러 및 중고 도서 데이터셋 구축
 
-프로젝트 구성원: 오도은, 박예림, 이준성, 정홍섭 / [발표 슬라이드](https://docs.google.com/presentation/d/15EIOMGpadZQf3cT2k0pfClS9DVICLmmf5ZTH1k4XnKc/edit?usp=sharing)
+Authors : Doeun Oh, Junseong Lee, Yerim Park, and Hongseop Jeong
 
-**사용된 스킬 셋**: NumPy, Pandas, Matplotlib, Beautifulsoup, re, Scikit-learn
+**Libraries**: NumPy, Pandas, Matplotlib, Beautifulsoup, re, Scikit-learn
 
-## 0. 초록
+## 0. Abstract
 
 - 알라딘 00년 1월 1주차 ~ 24년 7월 2주차의 베스트셀러 목록을 크롤링하여 141.5만 행의 DB 구축
   - 15.8만 여종의 도서에 대하여, 해당 주차에서의 순위 및 도서 관련 정보를 포함
 - 주간 베스트 셀러 DB를 바탕으로, 78만 행의 알라딘 중고 매장의 중고 도서 DB 구축
   - 10.3만 여종의 역대 베스트셀러 도서에 대한 중고 도서 매물 데이터
 
-## 1. 데이터셋
+## 1. Datasets
 
-### 1. [알라딘 주간 베스트셀러 데이터](https://www.aladin.co.kr/shop/common/wbest.aspx?BranchType=1)
+### 1. [Aladin Weekly Bestseller Dataset](https://www.aladin.co.kr/shop/common/wbest.aspx?BranchType=1)
 
-#### 개요
+#### About Dataset
 
 - 알라딘의 주간 베스트셀러 페이지에서 제공한 1~1000위에 대한 xls 파일 데이터를 이용하여 구성
 - 2000년 1월 1주차 ~ 2024년 7월 2주차까지의 데이터를 포괄하며, 24-07-10 ~ 24-07-12에 수집 진행
@@ -40,7 +40,7 @@
 
 *<b>도표.2</b> 알라딘 주간 베스트 셀러*
 
-### 2. [알라딘 중고 도서 데이터](https://www.aladin.co.kr/shop/UsedShop/wuseditemall.aspx?ItemId=254468327&TabType=3&Fix=1)
+### 2. [Aladin Usedbook Dataset](https://www.aladin.co.kr/shop/UsedShop/wuseditemall.aspx?ItemId=254468327&TabType=3&Fix=1)
 
 ![image](https://github.com/user-attachments/assets/e8840608-96f8-47e6-954b-5d6e08f47df9)
 
@@ -70,10 +70,11 @@
 
 *<b>도표.5</b> 데이터 셋들에 포함된 주요 column 및 그에 대한 개요*
 
-## 참고
+## References
 
-- 
+- [OLPJ24][(OLPJ24)] : Doeun Oh, Junseong Lee, Yerim Park, and Hongseop Jeong, 알라딘 중고 도서 데이터셋 구축 및 그에 기반한 중고 서적 가격 예측 모델, GitHub, 2024
 
+[(OLPJ24)]:https://github.com/kdt-3-second-Project/aladin_usedbook "OLPJ24"
 <!--
 참조 : https://github.com/e9t/nsmc
 
