@@ -15,18 +15,30 @@
 
 ## 1. 디렉토리 구조
 
+├── code : 크롤링/데이터 전처리 등에 쓰인 python 코드
+├── dataset
+│   ├── bookinfo
+│   │   ├── bestseller_240718.csv : **알라딘 주간 베스트셀러 Dataset**
+│   │   └── bestseller_cleaned_240718.csv : 위 Dataset에 포함된 도서의 목록
+│   └── usedinfo
+│       └── usedproduct_240718.csv : **알라딘 중고 도서 Dataset**
+├── rawdata
+│   ├── bookinfo : [크롤링](./research/240718_crawling_step0-2_by_js.ipynb)하여 수집한 베스트셀러 목록(csv)
+│   └── usedinfo : [크롤링](./code/step1_crawling_usedinfo.py)하여 얻은 중고도서 목록(csv) 등
+└── research : 크롤링 코드 개발 등에 쓰인 ipynb 파일
+
 ## 2. 데이터셋
 
-### 1. [알라딘 주간 베스트셀러 데이터](https://www.aladin.co.kr/shop/common/wbest.aspx?BranchType=1)
+### 1. 알라딘 주간 베스트셀러 Dataset
 
 #### 개요
 
 - 총 1,415,586개의 row에 15개의 column
   - 15.8만여 종의 도서에 대하여, 해당 주차에서의 순위 및 도서 관련 정보
-- 알라딘의 주간 베스트셀러 페이지에서 제공한 1~1000위에 대한 xls 파일 데이터를 이용하여 구성
+- [알라딘의 주간 베스트셀러 페이지](https://www.aladin.co.kr/shop/common/wbest.aspx?BranchType=1)에서 제공한 1~1000위에 대한 xls 파일 데이터를 이용하여 구성
   - 2000년 1월 1주차 ~ 2024년 7월 2주차까지의 데이터를 포괄하며, 24-07-10 ~ 24-07-12 동안 수집 진행
 
-  ![image](https://github.com/user-attachments/assets/e330ca44-893c-4fad-8d91-4a2f520c13af)
+  ![img1](./imgs/bestpage.png)
 
   *<b>도표.1</b> 알라딘 주간 베스트셀러 페이지 예시*
 
@@ -66,11 +78,12 @@ Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularP
 9,국내도서,아웃사이더를 위하여,215347,9788985304511.0,,김규항 김정란 진중권 홍세화 지음,아웃사이더,19991125,"7,000","6,300",350점,807,사회과학,2000년1월1주
 ```
 
-### 2. [알라딘 중고 도서 데이터](https://www.aladin.co.kr/shop/UsedShop/wuseditemall.aspx?ItemId=254468327&TabType=3&Fix=1)
+### 2. 알라딘 중고 도서 Dataset
 
-![image](https://github.com/user-attachments/assets/e8840608-96f8-47e6-954b-5d6e08f47df9)
+![img2](./imgs/usedpage.png)
 
-*<b>도표.4</b> 도서 별 중고 매물 목록 페이지 예시*
+*<b>도표.4</b> [도서 별 중고 매물 목록 페이지 예시](https://www.aladin.co.kr/shop/UsedShop/wuseditemall.aspx?ItemId=254468327&TabType=3&Fix=1
+)*
 
 <!--위의 탭을 포함하는 이미지로 업데이트 필요-->
 
@@ -79,8 +92,8 @@ Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularP
 - 총 784,213개의 row, 7개의 column으로 구성.
   - 103,055 종의 도서에 대한 중고도서 매물 784,213건
 - [알라딘 온라인 중고매장(광활한 우주점)](https://www.aladin.co.kr/usedstore/wonline.aspx?start=we)에 등록 된 중고 도서 매물 데이터
-- 위의 베스트셀러 Dataset에 포함된 도서(ItemId)를 기준으로(`/dataset/bookinfo/bestseller_cleaned_240718.csv`) 크롤링한 중고도서 매물 Dataset
-
+- 위의 베스트셀러 Dataset에 포함된 도서(ItemId)를 기준으로 크롤링한 중고도서 매물 Dataset
+  - 기준이 된 목록 : `/dataset/bookinfo/bestseller_cleaned_240718.csv`
 
   |  |Columns      |Description|
   |-:|:-----------:|-|
