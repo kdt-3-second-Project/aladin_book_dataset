@@ -15,17 +15,20 @@
 
 ## 1. 디렉토리 구조
 
+```
+aladin_book_dataset
 ├── code : 크롤링/데이터 전처리 등에 쓰인 python 코드
 ├── dataset
 │   ├── bookinfo
-│   │   ├── bestseller_240718.csv : **알라딘 주간 베스트셀러 Dataset**
+│   │   ├── bestseller_240718.csv : 알라딘 주간 베스트셀러 Dataset
 │   │   └── bestseller_cleaned_240718.csv : 위 Dataset에 포함된 도서의 목록
 │   └── usedinfo
-│       └── usedproduct_240718.csv : **알라딘 중고 도서 Dataset**
+│       └── usedproduct_240718.csv : 알라딘 중고 도서 Dataset
 ├── rawdata
-│   ├── bookinfo : [크롤링](./research/240718_crawling_step0-2_by_js.ipynb)하여 수집한 베스트셀러 목록(csv)
-│   └── usedinfo : [크롤링](./code/step1_crawling_usedinfo.py)하여 얻은 중고도서 목록(csv) 등
+│   ├── bookinfo : 수집한 베스트셀러 목록(csv)
+│   └── usedinfo : 크롤링하여 얻은 중고도서 목록(csv) 등
 └── research : 크롤링 코드 개발 등에 쓰인 ipynb 파일
+```
 
 ## 2. 데이터셋
 
@@ -35,7 +38,7 @@
 
 - 총 1,415,586개의 row에 15개의 column
   - 15.8만여 종의 도서에 대하여, 해당 주차에서의 순위 및 도서 관련 정보
-- [알라딘의 주간 베스트셀러 페이지](https://www.aladin.co.kr/shop/common/wbest.aspx?BranchType=1)에서 제공한 1~1000위에 대한 xls 파일 데이터를 이용하여 구성
+- [알라딘의 주간 베스트셀러 페이지](https://www.aladin.co.kr/shop/common/wbest.aspx?BranchType=1)에서 제공한 1~1000위에 대한 xls 파일 데이터를 [수집](./research/240718_crawling_step0-2_by_js.ipynb)하여 구성
   - 2000년 1월 1주차 ~ 2024년 7월 2주차까지의 데이터를 포괄하며, 24-07-10 ~ 24-07-12 동안 수집 진행
 
   ![img1](./imgs/bestpage.png)
@@ -92,7 +95,7 @@ Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularP
 - 총 784,213개의 row, 7개의 column으로 구성.
   - 103,055 종의 도서에 대한 중고도서 매물 784,213건
 - [알라딘 온라인 중고매장(광활한 우주점)](https://www.aladin.co.kr/usedstore/wonline.aspx?start=we)에 등록 된 중고 도서 매물 데이터
-- 위의 베스트셀러 Dataset에 포함된 도서(ItemId)를 기준으로 크롤링한 중고도서 매물 Dataset
+- 위의 베스트셀러 Dataset에 포함된 도서(ItemId)를 기준으로 [크롤링](./code/step1_crawling_usedinfo.py)한 중고도서 매물 Dataset
   - 기준이 된 목록 : `/dataset/bookinfo/bestseller_cleaned_240718.csv`
 
   |  |Columns      |Description|
