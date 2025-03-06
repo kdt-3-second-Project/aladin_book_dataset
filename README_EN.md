@@ -51,7 +51,7 @@ aladin_book_dataset
   | 0  | Rank            |A ranking of an merchandise, when an merchandise was included in an weekly bestseller list.|
   | 1  | Division        |Domestic books, Foreign books, etc.|
   | 2  | BookName        |A name of an merchandise.|
-  | 3  | ItemId          |An ID of an merchandise assigned from Aladin.|
+  | 3  | ItemId          |An ID of an merchandise assigned by Aladin.|
   | 4  | ISBN13          |The International Standard Book Number consisted of 13 digits.|
   | 5  | Code            |a 5 digit code assigned by the ISBN·ISSN·deposit system in the National Library of Korea.|
   | 6  | Authors         |-|
