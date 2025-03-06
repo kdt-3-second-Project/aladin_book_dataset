@@ -131,3 +131,7 @@ ItemId,UsedIdx,DeliveryFee,Price,Quality,Store,Url
 - [OLPJ24][(OLPJ24)] : Doeun Oh, Junseong Lee, Yerim Park, and Hongseop Jeong, 알라딘 중고 도서 데이터셋 구축 및 그에 기반한 중고 서적 가격 예측 모델, GitHub, 2024
 
 [(OLPJ24)]:https://github.com/kdt-3-second-Project/aladin_usedbook "OLPJ24"
+
+## License
+
+MIT
