@@ -53,7 +53,7 @@ aladin_book_dataset
   | 2  | BookName        |상품 이름|
   | 3  | ItemId          |알라딘에서 부여한 해당 상품의 고유 id. 도서 외에 당시 베스트 셀러가 됐던 MD 굿즈, 강연 등도 소수 포함. |
   | 4  | ISBN13          |전세계에서 공통적으로 사용하는 도서에 대한 id. 발행자 등의 정보가 포함.|
-  | 5  | Code            |부가기호. 한국 문헌 보호 센터에서 부여하는 번호로, 예상 독자층에 대한 정보 등이 포함.|
+  | 5  | Code            |부가기호. 5개의 숫자로 됨. 한국 문헌 보호 센터에서 부여하는 번호로, 예상 독자층에 대한 정보 등이 포함.|
   | 6  | Authors         |저자|
   | 7  | Publisher       |출판사|
   | 8  | PublishDate     |출간일|
@@ -68,7 +68,7 @@ aladin_book_dataset
 
 #### Quick Peek
 
-```
+```bash
 $ head ./dataset/bookinfo/bestseller_240718.csv 
 Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularPrice,SalesPrice,Mileage,SalesPoint,Category,BestsellerWeek
 1,국내도서,세상의 바보들에게 웃으면서 화내는 방법,208008,9788932902562,03860,"움베르토 에코 지음, 이세욱 옮김",열린책들,19991010,"9,500","8,550",470점,2695,에세이,2000년1월1주
@@ -84,20 +84,19 @@ Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularP
 
 ### 2. 알라딘 중고 도서 Dataset
 
-![img2](./imgs/usedpage.png)
-
-*<b>도표.4</b> [도서 별 중고 매물 목록 페이지 예시](https://www.aladin.co.kr/shop/UsedShop/wuseditemall.aspx?ItemId=254468327&TabType=3&Fix=1
-)*
-
-<!--위의 탭을 포함하는 이미지로 업데이트 필요-->
-
 #### 개요
 
 - 총 784,213개의 row, 7개의 column으로 구성.
   - 103,055 종의 도서에 대한 중고도서 매물 784,213건
 - [알라딘 온라인 중고매장(광활한 우주점)](https://www.aladin.co.kr/usedstore/wonline.aspx?start=we)에 등록 된 중고 도서 매물 데이터
-- 위의 베스트셀러 Dataset에 포함된 도서(ItemId)를 기준으로 [크롤링](./code/step1_crawling_usedinfo.py)한 중고도서 매물 Dataset
+- 위의 베스트셀러 Dataset에 포함된 도서(ItemId)를 기준으로 각 도서별 중고 매물 목록 페이지에서 [크롤링](./code/step1_crawling_usedinfo.py)한 중고도서 매물 Dataset
   - 기준이 된 목록 : `/dataset/bookinfo/bestseller_cleaned_240718.csv`
+
+  ![img2](./imgs/usedpage.png)
+  
+  *<b>도표.3</b> [도서 별 중고 매물 목록 페이지 예시](https://www.aladin.co.kr/shop/UsedShop/wuseditemall.aspx?ItemId=254468327&TabType=3&Fix=1
+  )*
+
 
   |  |Columns      |Description|
   |-:|:-----------:|-|
@@ -109,11 +108,11 @@ Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularP
   |5 | Store       | 해당 중고 매물의 취급 지점 |
   |6 | Url         | 해당 중고 매물의 판매 페이지 url. |
 
-  *<b>도표.6</b> 알라딘 중고 도서 Dataset의 columns*
+  *<b>도표.4</b> 알라딘 중고 도서 Dataset의 columns*
 
 #### Quick Peek
 
-```
+```bash
 $ head ./dataset/usedinfo/usedproduct_240718.csv 
 ItemId,UsedIdx,DeliveryFee,Price,Quality,Store,Url
 1000071,1,2500,1200,균일가,중고매장부산덕천점,https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=140023651
@@ -129,27 +128,6 @@ ItemId,UsedIdx,DeliveryFee,Price,Quality,Store,Url
 
 ## 참고
 
-- 
+- [OLPJ24][(OLPJ24)] : Doeun Oh, Junseong Lee, Yerim Park, and Hongseop Jeong, 알라딘 중고 도서 데이터셋 구축 및 그에 기반한 중고 서적 가격 예측 모델, GitHub, 2024
 
-<!--
-참조 : https://github.com/e9t/nsmc
-
-데이터셋 구조
-- 디렉터리 구조
-- Data description : columns info
-- 파일 별 Quick peek 
-
-1. bestseller_info
-각 주차 별 순위도 반영해서 concat
-2. usedinfo 
-
-characteristic
-
-크롤링 방법 : 어떤 코드를 사용했는지만 적고, 자세한 설명은 usedbook repo를 참고하고 하고 줄임
-
-- TODO
-1. bestseller info : concat 진행
-2. bookinfo : crawling에 사용한 것 기준
-3. usedbook_info : 어떤 bookinfo 기준으로 했는지
-
--->
+[(OLPJ24)]:https://github.com/kdt-3-second-Project/aladin_usedbook "OLPJ24"
