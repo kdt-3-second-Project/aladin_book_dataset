@@ -37,7 +37,7 @@ aladin_book_dataset
 
 - 1,415,586 rows and 15 columns
   - rankings and informations of merchandise in Aladin weekly bestseller lists.
-  - In 160,681 types of merchandises, there is 158,084 types of domestic-books.
+  - In 160,681 types of merchandises, there are 158,084 types of domestic-books.
 - At [Aladin weekly bestseller pages](https://www.aladin.co.kr/shop/common/wbest.aspx?BranchType=1), they provide `.xls` files of bestseller informations.
 - We had [collected](./research/240718_crawling_step0-2_by_js.ipynb) files to bulid the dataset from 24-07-10 to 24-07-12.
 - It covers data from 1st week of Jan. 2000 to 2nd week of Jul. 2024.
@@ -52,8 +52,8 @@ aladin_book_dataset
   | 1  | Division        |Domestic books, Foreign books, etc.|
   | 2  | BookName        |A name of an merchandise.|
   | 3  | ItemId          |An ID of an merchandise assigned by Aladin.|
-  | 4  | ISBN13          |The International Standard Book Number consisted of 13 digits.|
-  | 5  | Code            |a 5 digit code assigned by the ISBN·ISSN·deposit system in the National Library of Korea.|
+  | 4  | ISBN13          |The International Standard Book Number consists of 13 digits.|
+  | 5  | Code            |A 5 digit code assigned by the ISBN·ISSN·deposit system in the National Library of Korea.|
   | 6  | Authors         |-|
   | 7  | Publisher       |-|
   | 8  | PublishDate     |A date when a merchandise is published|
@@ -103,8 +103,8 @@ Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularP
   |2 | DeliveryFee | - |
   |3 | Price       | Price of an used-book |
   |4 | Quality     | '균일가'(uniform price), '하'(lower), '중'(middle), '상'(upper) or '최상'(best) |
-  |5 | Store       | a store where an used-book is in.|
-  |6 | Url         | a sales URL for an used-book. |
+  |5 | Store       | A store where an used-book is in.|
+  |6 | Url         | A sales URL for an used-book. |
 
   *<b>Table.2</b> Columns of the Aladin used-bookstore dataset*
 
