@@ -1,6 +1,6 @@
 **KOR** · [ENG](./README_EN.md)
 
-# 알라딘 베스트 셀러 및 중고 도서 데이터셋 구축
+# 알라딘 주간 베스트셀러 및 중고매장 도서 데이터셋
 
 **프로젝트 구성원**: 오도은, 박예림, 이준성, 정홍섭
 
@@ -53,7 +53,7 @@ aladin_book_dataset
   | 2  | BookName        |상품 이름|
   | 3  | ItemId          |알라딘에서 부여한 해당 상품의 고유 id. 도서 외에 당시 베스트 셀러가 됐던 MD 굿즈, 강연 등도 소수 포함. |
   | 4  | ISBN13          |전세계에서 공통적으로 사용하는 도서에 대한 id. 발행자 등의 정보가 포함.|
-  | 5  | Code            |부가기호. 5개의 숫자로 됨. 한국 문헌 보호 센터에서 부여하는 번호로, 예상 독자층에 대한 정보 등이 포함.|
+  | 5  | Code            |부가기호. 5개의 숫자로 됨. 국립중앙도서관 ISBN·ISSN·납본 시스템에서 부여하는 번호로, 예상 독자층에 대한 정보 등이 포함.|
   | 6  | Authors         |저자|
   | 7  | Publisher       |출판사|
   | 8  | PublishDate     |출간일|
@@ -82,7 +82,7 @@ Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularP
 9,국내도서,아웃사이더를 위하여,215347,9788985304511,,김규항 김정란 진중권 홍세화 지음,아웃사이더,19991125,"7,000","6,300",350점,807,사회과학,2000년1월1주
 ```
 
-### 2. 알라딘 중고 도서 Dataset
+### 2. 알라딘 중고매장 도서 Dataset
 
 #### 개요
 
@@ -96,7 +96,6 @@ Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularP
   
   *<b>도표.3</b> [도서 별 중고 매물 목록 페이지 예시](https://www.aladin.co.kr/shop/UsedShop/wuseditemall.aspx?ItemId=254468327&TabType=3&Fix=1
   )*
-
 
   |  |Columns      |Description|
   |-:|:-----------:|-|
@@ -134,4 +133,5 @@ ItemId,UsedIdx,DeliveryFee,Price,Quality,Store,Url
 
 ## License
 
-MIT
+- MIT
+- 참조 : [알라딘 OpenAPI 이용 안내](https://blog.aladin.co.kr/openapi/5353304)
