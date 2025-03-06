@@ -20,7 +20,7 @@ aladin_book_dataset
 ├── dataset
 │   ├── bookinfo
 │   │   ├── bestseller_240718.csv : Aladin Weekly Bestseller Dataset
-│   │   └── bestseller_cleaned_240718.csv : A list of books included in the Aladin Weekly Bestseller Dataset
+│   │   └── bestseller_cleaned_240718.csv : A list of titles included in the dataset
 │   └── usedinfo
 │       └── usedproduct_240718.csv : Aladin Used-bookstore Dataset
 ├── rawdata
