@@ -1,70 +1,70 @@
-**KOR** · [ENG](./README_EN.md)
+[KOR](./README_KOR.md) · **ENG**
 
-# 알라딘 주간 베스트셀러 및 중고매장 도서 데이터셋
+# Aladin Weekly Bestseller Dataset and Used-bookstore Dataset
 
-**프로젝트 구성원**: 오도은, 박예림, 이준성, 정홍섭
+Authors : Doeun Oh, Junseong Lee, Yerim Park, and Hongseop Jeong
 
-**사용된 스킬 셋**: NumPy, Pandas, Matplotlib, Beautifulsoup, re, Scikit-learn
+**Libraries**: NumPy, Pandas, Matplotlib, Beautifulsoup, re, Scikit-learn
 
-## 0. 초록
+## 0. Abstract
 
-- 알라딘 00년 1월 1주차 ~ 24년 7월 2주차의 베스트셀러 목록을 크롤링하여 141.5만 행의 Dataset 구축
-  - 15.8만여 종의 도서에 대하여, 해당 주차에서의 순위 및 도서 관련 정보를 포함
-- 주간 베스트 셀러 DB를 바탕으로, 78만 행의 알라딘 중고 매장의 중고 도서 Dataset 구축
-  - 10.3만여 종의 역대 베스트셀러 도서에 대한 중고 도서 매물 데이터
+- Built the Aladin Weekly Bestseller Dataset, which has 1.42 million rows and covers from 1st week of Jan. 2000 to 2nd week of Jul. 2024.
+  - There is information about books, including a ranking at the week, for 0.16 million titles.
+- Based on the Aladin Weekly Bestseller Dataset, we built the Aladin Used-bookstore Dataset, which consists of 0.78 million rows for 0.1 million titles.
 
-## 1. 디렉토리 구조
+## 1. The Structure of Directories
 
 ```
 aladin_book_dataset
-├── code : 크롤링/데이터 전처리 등에 쓰인 python 코드
+├── code : Python codes used in crawling,preprocess, etc.
 ├── dataset
 │   ├── bookinfo
-│   │   ├── bestseller_240718.csv : 알라딘 주간 베스트셀러 Dataset
-│   │   └── bestseller_cleaned_240718.csv : 위 Dataset에 포함된 도서의 목록
+│   │   ├── bestseller_240718.csv : Aladin Weekly Bestseller Dataset
+│   │   └── bestseller_cleaned_240718.csv : A list of books included in the Aladin Weekly Bestseller Dataset
 │   └── usedinfo
-│       └── usedproduct_240718.csv : 알라딘 중고 도서 Dataset
+│       └── usedproduct_240718.csv : Aladin Used-bookstore Dataset
 ├── rawdata
-│   ├── bookinfo : 수집한 베스트셀러 목록(csv)
-│   └── usedinfo : 크롤링하여 얻은 중고도서 목록(csv) 등
-└── research : 크롤링 코드 개발 등에 쓰인 ipynb 파일
+│   ├── bookinfo : collected weekly bestseller files(csv)
+│   └── usedinfo : crawled used-bookstore data files(csv), etc.
+└── research : .ipynb files used in developing codes, etc.
 ```
 
-## 2. 데이터셋
+## 2. Datasets
 
-### 1. 알라딘 주간 베스트셀러 Dataset
+### 1. Aladin Weekly Bestseller Dataset
 
-#### 개요
+#### Informations
 
-- 총 1,415,586개의 row에 15개의 column
-  - 각 주차 별 베스트셀러 순위 및 상품 관련 정보
-  - 160,681 종의 상품 중 국내도서는 158,084 종
-- [알라딘의 주간 베스트셀러 페이지](https://www.aladin.co.kr/shop/common/wbest.aspx?BranchType=1)에서 제공한 1~1000위에 대한 xls 파일 데이터를 [수집](./research/240718_crawling_step0-2_by_js.ipynb)하여 구성
-  - 2000년 1월 1주차 ~ 2024년 7월 2주차까지의 데이터를 포괄하며, 24-07-10 ~ 24-07-12 동안 수집 진행
+- 1,415,586 rows and 15 columns
+  - rankings and informations of merchandise in Aladin weekly bestseller lists.
+  - In 160,681 types of merchandises, there are 158,084 types of domestic-books.
+- At [Aladin weekly bestseller pages](https://www.aladin.co.kr/shop/common/wbest.aspx?BranchType=1), they provide `.xls` files of bestseller informations.
+- We had [collected](./research/240718_crawling_step0-2_by_js.ipynb) files to bulid the dataset from 24-07-10 to 24-07-12.
+- It covers data from 1st week of Jan. 2000 to 2nd week of Jul. 2024.
 
   ![img1](./imgs/bestpage.png)
 
-  *<b>도표.1</b> 알라딘 주간 베스트셀러 페이지 예시*
+  *<b>Fig.1</b> An example of Aladin weekly bestseller pages*
 
   |    |Columns          |Description                                   |
   |---:|:---------------:|----------------------------------------------|
-  | 0  | Rank            |주간 베스트셀러에 올랐을 때, 해당 상품의 당시 순위|
-  | 1  | Division        |국내도서, 외국도서 등으로 구분|
-  | 2  | BookName        |상품 이름|
-  | 3  | ItemId          |알라딘에서 부여한 해당 상품의 고유 id. 도서 외에 당시 베스트 셀러가 됐던 MD 굿즈, 강연 등도 소수 포함. |
-  | 4  | ISBN13          |전세계에서 공통적으로 사용하는 도서에 대한 id. 발행자 등의 정보가 포함.|
-  | 5  | Code            |부가기호. 5개의 숫자로 됨. 국립중앙도서관 ISBN·ISSN·납본 시스템에서 부여하는 번호로, 예상 독자층에 대한 정보 등이 포함.|
-  | 6  | Authors         |저자|
-  | 7  | Publisher       |출판사|
-  | 8  | PublishDate     |출간일|
-  | 9  | RegularPrice    |정가|
-  | 10 | SalesPrice      |판매가|
-  | 11 | Mileage         |마일리지|
-  | 12 | SalesPoint      |판매량과 판매기간에 근거하여 해당 상품의 판매도를 산출한 알라딘만의 (크롤링 시점에서의) 판매지수|
-  | 13 | Category        |도서가 속한 장르|
-  | 14 | BestsellerWeek  |해당 상품이 베스트셀러에 올랐었던 주 차|
+  | 0  | Rank            |A ranking of an merchandise, when an merchandise was included in an weekly bestseller list.|
+  | 1  | Division        |Domestic books, Foreign books, etc.|
+  | 2  | BookName        |A name of an merchandise.|
+  | 3  | ItemId          |An ID of an merchandise assigned by Aladin.|
+  | 4  | ISBN13          |The International Standard Book Number consists of 13 digits.|
+  | 5  | Code            |A 5 digit code assigned by the ISBN·ISSN·deposit system in the National Library of Korea.|
+  | 6  | Authors         |-|
+  | 7  | Publisher       |-|
+  | 8  | PublishDate     |A date when a merchandise is published|
+  | 9  | RegularPrice    |-|
+  | 10 | SalesPrice      |-|
+  | 11 | Mileage         |-|
+  | 12 | SalesPoint      |Aladin's sales index that calculates the sales of the merchandise based on sales volume and sales period, at the time of crawling.|
+  | 13 | Category        |A genre that a merchandise coresspond to.|
+  | 14 | BestsellerWeek  |A week when an merchandise was included in an weekly bestseller list.|
 
-  *<b>도표.2</b> 알라딘 주간 베스트 셀러 Dataset의 columns*
+  *<b>Table.1</b> Columns of the Aladin weekly bestseller dataset*
 
 #### Quick Peek
 
@@ -82,32 +82,31 @@ Rank,Division,BookName,ItemId,ISBN13,Code,Authors,Publisher,PublishDate,RegularP
 9,국내도서,아웃사이더를 위하여,215347,9788985304511,,김규항 김정란 진중권 홍세화 지음,아웃사이더,19991125,"7,000","6,300",350점,807,사회과학,2000년1월1주
 ```
 
-### 2. 알라딘 중고매장 도서 Dataset
+### 2. Aladin Used-bookstore Dataset
 
-#### 개요
+#### Informations
 
-- 총 784,213개의 row, 7개의 column으로 구성.
-  - 103,055 종의 도서에 대한 중고도서 매물 784,213건
-- [알라딘 온라인 중고매장(광활한 우주점)](https://www.aladin.co.kr/usedstore/wonline.aspx?start=we)에 등록 된 중고 도서 매물 데이터
-- 위의 베스트셀러 Dataset에 포함된 도서(ItemId)를 기준으로 각 도서별 중고 매물 목록 페이지에서 [크롤링](./code/step1_crawling_usedinfo.py)한 중고도서 매물 Dataset
-  - 기준이 된 목록 : `/dataset/bookinfo/bestseller_cleaned_240718.csv`
+- 784,213 rows and 7 columns.
+  - 784,213 used-books for 103,055 titles.
+- The dataset of usedbooks sales on the [Aladin Online Used-bookstore(광활한 우주점)](https://www.aladin.co.kr/usedstore/wonline.aspx?start=we)
+  - [Crawled](./code/step1_crawling_usedinfo.py) based on the list; `/dataset/bookinfo/bestseller_cleaned_240718.csv`; processed from the Aladin Weekly Bestseller dataset.
 
   ![img2](./imgs/usedpage.png)
   
-  *<b>도표.3</b> [도서 별 중고 매물 목록 페이지 예시](https://www.aladin.co.kr/shop/UsedShop/wuseditemall.aspx?ItemId=254468327&TabType=3&Fix=1
+  *<b>Fig.2</b> [An Example of used product pages for each book.](https://www.aladin.co.kr/shop/UsedShop/wuseditemall.aspx?ItemId=254468327&TabType=3&Fix=1
   )*
 
   |  |Columns      |Description|
   |-:|:-----------:|-|
-  |0 | ItemId      | 해당 중고 매물의 (새 책 기준) ItemId. |
-  |1 | UsedIdx     | 해당 중고 매물이 해당 도서의 중고도서 목록 페이지에 있었던 순서. |
-  |2 | DeliveryFee | 배송비. |
-  |3 | Price       | 해당 중고 매물 판매가. |
-  |4 | Quality     | 중고 등급. '균일가' 및 '하', '중', '상', '최상'으로 구분. |
-  |5 | Store       | 해당 중고 매물의 취급 지점 |
-  |6 | Url         | 해당 중고 매물의 판매 페이지 url. |
+  |0 | ItemId      | The ItemId of the new book correspond to an used-book. |
+  |1 | UsedIdx     | An order where an used-book were listed on the used product page for that book.|
+  |2 | DeliveryFee | - |
+  |3 | Price       | Price of an used-book |
+  |4 | Quality     | '균일가'(uniform price), '하'(lower), '중'(middle), '상'(upper) or '최상'(best) |
+  |5 | Store       | A store where an used-book is in.|
+  |6 | Url         | A sales URL for an used-book. |
 
-  *<b>도표.4</b> 알라딘 중고 도서 Dataset의 columns*
+  *<b>Table.2</b> Columns of the Aladin used-bookstore dataset*
 
 #### Quick Peek
 
@@ -125,13 +124,13 @@ ItemId,UsedIdx,DeliveryFee,Price,Quality,Store,Url
 1001409,2,2500,4700,중,중고매장일산점,https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=342294915
 ```
 
-## 참고
+## Reference
 
 - [OLPJ24][(OLPJ24)] : Doeun Oh, Junseong Lee, Yerim Park, and Hongseop Jeong, 알라딘 중고 도서 데이터셋 구축 및 그에 기반한 중고 서적 가격 예측 모델, GitHub, 2024
-
-[(OLPJ24)]:https://github.com/kdt-3-second-Project/aladin_usedbook "OLPJ24"
 
 ## License
 
 - MIT
-- 참조 : [알라딘 OpenAPI 이용 안내](https://blog.aladin.co.kr/openapi/5353304)
+- cf. [Instructions for using Aladin OpenAPIs](https://blog.aladin.co.kr/openapi/5353304)
+
+[(OLPJ24)]:https://github.com/kdt-3-second-Project/aladin_usedbook "OLPJ24"
